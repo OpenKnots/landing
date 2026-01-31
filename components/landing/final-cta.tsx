@@ -39,13 +39,13 @@ export function FinalCTA() {
               size="lg"
               className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
             >
-              <Link href="https://app.openknot.ai/signup">
+              <Link href="https://github.com/openknots">
                 Start Building Free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="https://github.com/openknot-ai" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/openknots" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
                 Star on GitHub
               </Link>
