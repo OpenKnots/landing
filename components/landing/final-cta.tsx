@@ -29,7 +29,7 @@ export function FinalCTA() {
             ?
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Join hundreds of teams already building reliable, auditable AI agents 
+            Join teams already building reliable, auditable AI agents 
             with OpenKnot AI. Start for free, scale when you are ready.
           </p>
 
@@ -51,10 +51,9 @@ export function FinalCTA() {
               </Link>
             </Button>
           </div>
-
-          <p className="mt-8 text-sm text-muted-foreground/70">
+          {/* <p className="mt-8 text-sm text-muted-foreground/70">
             Free tier includes 1,000 agent runs/month. No credit card required.
-          </p>
+          </p> */}
         </motion.div>
       </div>
     </section>
