@@ -41,7 +41,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500" />
               </span>
-              Now in Public Beta
+              Beta
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
@@ -73,7 +73,7 @@ export function Hero() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="https://github.com/openknot-ai" target="_blank" rel="noopener noreferrer">
+                <Link href="https://github.com/openknots" target="_blank" rel="noopener noreferrer">
                   <Github className="mr-2 h-4 w-4" />
                   View on GitHub
                 </Link>
@@ -97,7 +97,7 @@ export function Hero() {
                 <div className="flex justify-center">
                   <Image
                     src="/openknot-logo.png"
-                    alt="OpenKnot AI - Interconnected AI Agents"
+                    alt="OpenKnot | Weaving Agency"
                     width={280}
                     height={280}
                     className="w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72"
@@ -113,7 +113,7 @@ export function Hero() {
                   Memory
                 </div>
                 <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-xs font-medium text-purple-400">
-                  Specialists
+                  Weavers
                 </div>
                 <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-xs font-medium text-purple-400">
                   Policies
