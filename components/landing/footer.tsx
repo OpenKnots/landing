@@ -6,33 +6,33 @@ import { Github, Twitter, Linkedin } from "lucide-react"
 const footerLinks = {
   product: [
     { label: "Features", href: "#features" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "Our Knots", href: "#how-it-works" },
     { label: "Use Cases", href: "#use-cases" },
     { label: "Pricing", href: "#pricing" },
   ],
   resources: [
-    { label: "Documentation", href: "https://docs.openknot.ai" },
-    { label: "API Reference", href: "https://docs.openknot.ai/api" },
-    { label: "Tutorials", href: "https://docs.openknot.ai/tutorials" },
-    { label: "Blog", href: "https://blog.openknot.ai" },
+    { label: "Documentation", href: "/" },
+    { label: "API Reference", href: "/" },
+    { label: "Tutorials", href: "/" },
+    { label: "Blog", href: "https://openknot.ai" },
   ],
   company: [
-    { label: "About", href: "/about" },
-    { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
-    { label: "Press", href: "/press" },
+    { label: "About", href: "/" },
+    { label: "Careers", href: "/" },
+    { label: "Contact", href: "/" },
+    { label: "Press", href: "/" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-    { label: "Security", href: "/security" },
+    { label: "Privacy Policy", href: "/" },
+    { label: "Terms of Service", href: "/" },
+    { label: "Security", href: "/" },
   ],
 }
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/openknot-ai", label: "GitHub" },
-  { icon: Twitter, href: "https://twitter.com/openknot_ai", label: "Twitter" },
-  { icon: Linkedin, href: "https://linkedin.com/company/openknot-ai", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/openknots", label: "GitHub" },
+  { icon: Twitter, href: "https://twitter.com/openknot", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/openknot", label: "LinkedIn" },
 ]
 
 export function Footer() {
