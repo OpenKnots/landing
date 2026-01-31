@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 
 const navLinks = [
   { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
+  { href: "#how-it-works", label: "Our Knots" },
   { href: "#use-cases", label: "Use Cases" },
   { href: "#faq", label: "FAQ" },
 ]
@@ -44,7 +44,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2.5">
             <Image
               src="/openknot-logo.png"
-              alt="OpenKnot AI Logo"
+              alt="OpenKnot Logo"
               width={36}
               height={36}
               className="rounded-lg"
@@ -71,7 +71,7 @@ export function Navbar() {
           <div className="hidden md:flex md:items-center md:gap-2">
             <ThemeToggle />
             <Button variant="ghost" size="icon" asChild>
-              <Link href="https://github.com/openknot-ai" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/openknots" target="_blank" rel="noopener noreferrer">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
@@ -121,7 +121,7 @@ export function Navbar() {
                 ))}
                 <div className="pt-2 flex flex-col gap-2">
                   <Button variant="outline" asChild className="w-full justify-start bg-transparent">
-                    <Link href="https://github.com/openknot-ai" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://github.com/openknots" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
                       GitHub
                     </Link>
