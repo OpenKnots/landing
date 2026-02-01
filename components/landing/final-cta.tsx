@@ -11,7 +11,7 @@ export function FinalCTA() {
   return (
     <section id="get-started" className="py-20 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-950/20 via-transparent to-transparent dark:from-purple-950/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent dark:from-primary/30" />
       
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -23,7 +23,7 @@ export function FinalCTA() {
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
             Ready to build AI you can{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary/70 to-primary bg-clip-text text-transparent">
               actually trust
             </span>
             ?
@@ -37,7 +37,7 @@ export function FinalCTA() {
             <Button
               asChild
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
+              className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30"
             >
               <Link href="https://github.com/openknots">
                 Start Building Free

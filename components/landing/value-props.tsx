@@ -43,7 +43,7 @@ export function ValueProps() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
             Why teams choose{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary/70 to-primary bg-clip-text text-transparent">
               OpenKnot AI
             </span>
           </h2>
@@ -62,10 +62,10 @@ export function ValueProps() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              <Card className="h-full border-border/50 bg-card/50 backdrop-blur-sm hover:border-purple-500/30 transition-colors">
+              <Card className="h-full border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/30 transition-colors">
                 <CardHeader>
-                  <div className="mb-4 p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 w-fit">
-                    <feature.icon className="h-6 w-6 text-purple-500" />
+                  <div className="mb-4 p-3 rounded-xl bg-primary/10 border border-primary/20 w-fit">
+                    <feature.icon className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
                   <CardDescription className="text-muted-foreground leading-relaxed">
@@ -79,7 +79,7 @@ export function ValueProps() {
                         key={highlight}
                         className="flex items-center gap-2 text-sm text-muted-foreground"
                       >
-                        <div className="h-1.5 w-1.5 rounded-full bg-purple-500" />
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                         {highlight}
                       </li>
                     ))}

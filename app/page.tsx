@@ -4,6 +4,7 @@ import { SocialProof } from "@/components/landing/social-proof"
 import { ValueProps } from "@/components/landing/value-props"
 import { HowItWorks } from "@/components/landing/how-it-works"
 import { VSCodeExtensionCTA } from "@/components/landing/vscode-extension-cta"
+import { OurProducts } from "@/components/landing/our-products"
 import { UseCases } from "@/components/landing/use-cases"
 import { FAQ } from "@/components/landing/faq"
 import { FinalCTA } from "@/components/landing/final-cta"
@@ -19,6 +20,7 @@ export default function HomePage() {
         <ValueProps />
         <HowItWorks />
         <VSCodeExtensionCTA />
+        <OurProducts />
         <UseCases />
         <FAQ />
         <FinalCTA />

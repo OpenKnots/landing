@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 const navLinks = [
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "Our Knots" },
+  { href: "#products", label: "Products" },
   { href: "#use-cases", label: "Use Cases" },
   { href: "#faq", label: "FAQ" },
 ]
@@ -76,7 +77,7 @@ export function Navbar() {
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
-            <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Button asChild className="bg-primary hover:bg-primary/90 text-white">
               <Link href="#get-started">Get Started</Link>
             </Button>
           </div>
@@ -126,7 +127,7 @@ export function Navbar() {
                       GitHub
                     </Link>
                   </Button>
-                  <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white">
                     <Link href="#get-started">Get Started</Link>
                   </Button>
                 </div>

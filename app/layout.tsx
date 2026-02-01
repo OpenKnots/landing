@@ -21,18 +21,27 @@ export const metadata: Metadata = {
     title: 'OpenKnot AI - Composable AI Agents You Can Trust',
     description: 'Build reliable, auditable AI agents with clear boundaries.',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'OpenKnot AI',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'OpenKnot AI - Composable AI Agents You Can Trust',
     description: 'Build reliable, auditable AI agents with clear boundaries.',
+    images: ['/og-image.png'],
   },
 }
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+    { media: '(prefers-color-scheme: dark)', color: '#05040a' },
   ],
 }
 

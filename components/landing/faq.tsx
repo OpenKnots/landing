@@ -51,18 +51,18 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
           relative overflow-hidden rounded-2xl
           backdrop-blur-xl bg-white/5 dark:bg-white/5
           border border-white/10 dark:border-white/10
-          shadow-xl shadow-purple-500/5
+          shadow-xl shadow-primary/5
           transition-all duration-500
           ${isOpen 
-            ? "bg-white/10 dark:bg-white/10 border-purple-500/30 shadow-purple-500/10" 
-            : "hover:bg-white/10 dark:hover:bg-white/10 hover:border-purple-500/20 hover:shadow-purple-500/10"
+            ? "bg-white/10 dark:bg-white/10 border-primary/30 shadow-primary/10" 
+            : "hover:bg-white/10 dark:hover:bg-white/10 hover:border-primary/20 hover:shadow-primary/10"
           }
         `}
       >
         {/* Gradient overlay */}
         <div 
           className={`
-            absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-purple-500/5
+            absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5
             transition-opacity duration-500
             ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-50"}
           `}
@@ -81,8 +81,8 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
               shrink-0 p-2 rounded-xl backdrop-blur-sm
               transition-all duration-300
               ${isOpen 
-                ? "bg-purple-500/20 text-purple-400 rotate-0" 
-                : "bg-white/10 text-muted-foreground group-hover:bg-purple-500/10 group-hover:text-purple-400"
+                ? "bg-primary/20 text-primary/90 rotate-0" 
+                : "bg-white/10 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary/90"
               }
             `}
           >
@@ -105,7 +105,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
               className="overflow-hidden"
             >
               <div className="relative px-6 pb-6 pt-0">
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/30 to-transparent mb-4" />
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-4" />
                 <p className="text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </p>
@@ -124,12 +124,12 @@ export function FAQ() {
   return (
     <section id="faq" className="relative py-20 md:py-32 overflow-hidden">
       {/* Glassmorphic background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-transparent to-purple-500/5" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-primary/5" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
       
       {/* Floating orbs */}
-      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <motion.div

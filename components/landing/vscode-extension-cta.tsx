@@ -40,12 +40,12 @@ export function VSCodeExtensionCTA() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-5 rounded-full border border-purple-500/30 bg-purple-500/10 text-sm text-purple-400">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-5 rounded-full border border-primary/30 bg-primary/10 text-sm text-primary/90">
               Guided install in VS Code
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
               Install OpenClaw with{" "}
-              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary/70 to-primary bg-clip-text text-transparent">
                 the VS Code Extension
               </span>
             </h2>
@@ -57,7 +57,7 @@ export function VSCodeExtensionCTA() {
               <Button
                 asChild
                 size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
+                className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30"
               >
                 <Link
                   href="https://github.com/OpenKnots/openclaw-extension"
@@ -96,8 +96,8 @@ export function VSCodeExtensionCTA() {
               <CardContent className="space-y-5">
                 {highlights.map((item) => (
                   <div key={item.title} className="flex gap-4">
-                    <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
-                      <item.icon className="h-5 w-5 text-purple-500" />
+                    <div className="mt-1 flex size-10 aspect-square items-center justify-center rounded-xl text-muted-foreground bg-primary/10 border border-primary/20">
+                      <item.icon className="size-5" />
                     </div>
                     <div>
                       <h3 className="text-base font-semibold">{item.title}</h3>

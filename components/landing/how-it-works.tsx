@@ -22,7 +22,7 @@ function highlightYaml(code: string) {
     // Match list item dash
     if (remaining.startsWith("- ")) {
       tokens.push(
-        <span key={`dash-${lineIndex}`} className="text-purple-400">
+        <span key={`dash-${lineIndex}`} className="text-primary/70">
           -
         </span>
       )
@@ -36,12 +36,12 @@ function highlightYaml(code: string) {
       if (keyValueMatch) {
         const [, key, colon, value] = keyValueMatch
         tokens.push(
-          <span key={`key-${lineIndex}-${keyIndex}`} className="text-cyan-400">
+          <span key={`key-${lineIndex}-${keyIndex}`} className="text-primary">
             {key}
           </span>
         )
         tokens.push(
-          <span key={`colon-${lineIndex}-${keyIndex}`} className="text-zinc-500">
+          <span key={`colon-${lineIndex}-${keyIndex}`} className="text-foreground/50">
             {colon}
           </span>
         )
@@ -51,7 +51,7 @@ function highlightYaml(code: string) {
         if (trimmedValue.startsWith('"') || trimmedValue.startsWith("'")) {
           // String value
           tokens.push(
-            <span key={`value-${lineIndex}-${keyIndex}`} className="text-emerald-400">
+            <span key={`value-${lineIndex}-${keyIndex}`} className="text-foreground">
               {value}
             </span>
           )
@@ -61,13 +61,13 @@ function highlightYaml(code: string) {
           parts.forEach((part, i) => {
             if (part.startsWith('"') && part.endsWith('"')) {
               tokens.push(
-                <span key={`arr-str-${lineIndex}-${keyIndex}-${i}`} className="text-emerald-400">
+                <span key={`arr-str-${lineIndex}-${keyIndex}-${i}`} className="text-foreground">
                   {part}
                 </span>
               )
             } else {
               tokens.push(
-                <span key={`arr-${lineIndex}-${keyIndex}-${i}`} className="text-zinc-400">
+                <span key={`arr-${lineIndex}-${keyIndex}-${i}`} className="text-foreground/60">
                   {part}
                 </span>
               )
@@ -76,7 +76,7 @@ function highlightYaml(code: string) {
         } else {
           // Other value (could be a reference or plain text)
           tokens.push(
-            <span key={`val-${lineIndex}-${keyIndex}`} className="text-amber-300">
+            <span key={`val-${lineIndex}-${keyIndex}`} className="text-primary/80">
               {value}
             </span>
           )
@@ -88,7 +88,7 @@ function highlightYaml(code: string) {
         const stringMatch = remaining.match(/^"([^"]*)"/)
         if (stringMatch) {
           tokens.push(
-            <span key={`str-${lineIndex}-${keyIndex}`} className="text-emerald-400">
+            <span key={`str-${lineIndex}-${keyIndex}`} className="text-foreground">
               {stringMatch[0]}
             </span>
           )
@@ -122,25 +122,25 @@ function InteractiveCodeBlock({ code, filename }: { code: string; filename: stri
   }
 
   return (
-    <div className="relative group rounded-2xl bg-zinc-950 border border-zinc-800 overflow-hidden transition-all duration-300 hover:border-purple-500/30 hover:shadow-lg hover:shadow-purple-500/10">
+    <div className="relative group rounded-2xl bg-black/80 border border-white/10 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/50">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/60">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500/80 group-hover:bg-red-500 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80 group-hover:bg-yellow-500 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-green-500/80 group-hover:bg-green-500 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-primary/40 group-hover:bg-primary/70 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-primary/40 group-hover:bg-primary/70 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-primary/40 group-hover:bg-primary/70 transition-colors" />
           </div>
-          <span className="text-xs text-zinc-500 ml-2 font-mono">{filename}</span>
+          <span className="text-xs text-muted-foreground ml-2 font-mono">{filename}</span>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={handleCopy}
-          className="h-7 px-2 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800 opacity-0 group-hover:opacity-100 transition-all duration-200"
+          className="h-7 px-2 text-muted-foreground hover:text-foreground hover:bg-white/10 opacity-0 group-hover:opacity-100 transition-all duration-200"
         >
           {copied ? (
-            <Check className="h-3.5 w-3.5 text-emerald-400" />
+            <Check className="h-3.5 w-3.5 text-primary" />
           ) : (
             <Copy className="h-3.5 w-3.5" />
           )}
@@ -156,15 +156,15 @@ function InteractiveCodeBlock({ code, filename }: { code: string; filename: stri
               <div
                 key={index}
                 className={`flex transition-colors duration-150 -mx-4 px-4 ${
-                  hoveredLine === index ? "bg-purple-500/10" : ""
+                  hoveredLine === index ? "bg-primary/10" : ""
                 }`}
                 onMouseEnter={() => setHoveredLine(index)}
                 onMouseLeave={() => setHoveredLine(null)}
               >
-                <span className="select-none w-8 text-right pr-4 text-zinc-600 shrink-0">
+                <span className="select-none w-8 text-right pr-4 text-foreground/40 shrink-0">
                   {index + 1}
                 </span>
-                <span className="text-zinc-300">{highlightYaml(line)}</span>
+                <span className="text-foreground/85">{highlightYaml(line)}</span>
               </div>
             ))}
           </code>
@@ -172,7 +172,7 @@ function InteractiveCodeBlock({ code, filename }: { code: string; filename: stri
       </div>
 
       {/* Subtle glow effect */}
-      <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-purple-500/5 to-transparent" />
+      <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-primary/10 to-transparent" />
     </div>
   )
 }
@@ -251,11 +251,11 @@ export function HowItWorks() {
               {/* Content */}
               <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="text-5xl font-bold text-purple-500/20">
+                  <span className="text-5xl font-bold text-primary/20">
                     {step.step}
                   </span>
-                  <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20">
-                    <step.icon className="h-5 w-5 text-purple-500" />
+                  <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
+                    <step.icon className="h-5 w-5 text-primary" />
                   </div>
                 </div>
                 <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>

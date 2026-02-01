@@ -2,10 +2,10 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { 
-  MessageSquare, 
-  FileSearch, 
-  ShoppingCart, 
+import {
+  MessageSquare,
+  FileSearch,
+  ShoppingCart,
   Headphones,
   ArrowRight,
   CheckCircle2
@@ -25,8 +25,8 @@ const useCases = [
       "Seamless human handoff when needed",
       "Complete conversation audit trails",
     ],
-    gradient: "from-purple-500/20 to-pink-500/20",
-    accentColor: "purple",
+    gradient: "from-primary/20 to-primary/5",
+    accentColor: "primary",
     size: "large" as const,
   },
   {
@@ -42,8 +42,8 @@ const useCases = [
       "Bias detection and flagging",
       "Reproducible analysis pipelines",
     ],
-    gradient: "from-cyan-500/20 to-blue-500/20",
-    accentColor: "cyan",
+    gradient: "from-primary/15 to-primary/5",
+    accentColor: "primary",
     size: "medium" as const,
   },
   {
@@ -59,8 +59,8 @@ const useCases = [
       "Privacy-preserving personalization",
       "Clear data usage policies",
     ],
-    gradient: "from-amber-500/20 to-orange-500/20",
-    accentColor: "amber",
+    gradient: "from-primary/15 to-primary/5",
+    accentColor: "primary",
     size: "medium" as const,
   },
   {
@@ -76,36 +76,18 @@ const useCases = [
       "Integration with existing tools",
       "Audit-ready activity logs",
     ],
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    accentColor: "emerald",
+    gradient: "from-primary/20 to-primary/10",
+    accentColor: "primary",
     size: "large" as const,
   },
 ]
 
 const accentStyles = {
-  purple: {
-    icon: "bg-purple-500/20 border-purple-500/30 text-purple-400",
-    dot: "bg-purple-500",
-    hover: "group-hover:border-purple-500/50 group-hover:shadow-purple-500/20",
-    button: "text-purple-400 group-hover:text-purple-300",
-  },
-  cyan: {
-    icon: "bg-cyan-500/20 border-cyan-500/30 text-cyan-400",
-    dot: "bg-cyan-500",
-    hover: "group-hover:border-cyan-500/50 group-hover:shadow-cyan-500/20",
-    button: "text-cyan-400 group-hover:text-cyan-300",
-  },
-  amber: {
-    icon: "bg-amber-500/20 border-amber-500/30 text-amber-400",
-    dot: "bg-amber-500",
-    hover: "group-hover:border-amber-500/50 group-hover:shadow-amber-500/20",
-    button: "text-amber-400 group-hover:text-amber-300",
-  },
-  emerald: {
-    icon: "bg-emerald-500/20 border-emerald-500/30 text-emerald-400",
-    dot: "bg-emerald-500",
-    hover: "group-hover:border-emerald-500/50 group-hover:shadow-emerald-500/20",
-    button: "text-emerald-400 group-hover:text-emerald-300",
+  primary: {
+    icon: "bg-primary/20 border-primary/30 text-primary/90",
+    dot: "bg-primary",
+    hover: "group-hover:border-primary/50 group-hover:shadow-primary/20",
+    button: "text-primary/90 group-hover:text-primary",
   },
 }
 
@@ -132,16 +114,16 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
       `}
     >
       {/* Background gradient */}
-      <div 
+      <div
         className={`
           absolute inset-0 bg-gradient-to-br ${useCase.gradient}
           transition-opacity duration-500
           ${isHovered ? "opacity-100" : "opacity-0"}
         `}
       />
-      
+
       {/* Subtle grid pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
@@ -150,7 +132,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
       />
 
       {/* Content */}
-      <div className={`relative h-full flex flex-col ${useCase.size === "large" ? "p-8" : "p-6"}`}>
+      <div className={`relative flex flex-col ${useCase.size === "large" ? "p-8" : "p-6"}`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className={`p-3 rounded-2xl border backdrop-blur-sm ${styles.icon}`}>
@@ -170,7 +152,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
         </p>
 
         {/* Outcomes - only show on large cards or when hovered on medium */}
-        <div 
+        <div
           className={`
             flex-1 space-y-2 transition-all duration-300
             ${useCase.size === "large" ? "opacity-100" : isHovered ? "opacity-100" : "opacity-0 h-0 overflow-hidden md:opacity-100 md:h-auto"}
@@ -192,7 +174,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
 
         {/* Footer action */}
         <div className="mt-auto pt-6">
-          <div 
+          <div
             className={`
               inline-flex items-center gap-2 text-sm font-medium
               transition-all duration-300
@@ -200,7 +182,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
             `}
           >
             <span>Learn more</span>
-            <ArrowRight 
+            <ArrowRight
               className={`
                 h-4 w-4 transition-transform duration-300
                 ${isHovered ? "translate-x-1" : "translate-x-0"}
@@ -210,7 +192,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
         </div>
 
         {/* Corner accent */}
-        <div 
+        <div
           className={`
             absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-3xl
             transition-opacity duration-500
@@ -229,8 +211,8 @@ export function UseCases() {
   return (
     <section id="use-cases" className="relative py-20 md:py-32 overflow-hidden">
       {/* Glassmorphic background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -243,14 +225,13 @@ export function UseCases() {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
             Built for real-world applications
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            See how teams are using OpenKnot AI to build trustworthy AI experiences 
-            across industries.
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
+            Use OpenKnot AI to build trustworthy AI experiences.
           </p>
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(280px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(220px,auto)]">
           {useCases.map((useCase, index) => (
             <BentoCard key={useCase.id} useCase={useCase} index={index} />
           ))}
