@@ -93,7 +93,7 @@ export function OurProducts() {
             </span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Tools that make OpenKnot AI faster to adopt, easier to explore, and ready
+            Tools that make OpenKnot faster to adopt, easier to explore, and ready
             for production use.
           </p>
         </motion.div>
@@ -137,8 +137,8 @@ export function OurProducts() {
                 <CardContent className="space-y-5">
                   {product.highlights.map((item) => (
                     <div key={item.title} className="flex gap-4">
-                      <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
-                        <item.icon className="h-5 w-5 text-purple-500" />
+                      <div className="mt-1 flex size-10 aspect-square items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
+                        <item.icon className="size-5 text-purple-500" />
                       </div>
                       <div>
                         <h3 className="text-base font-semibold">{item.title}</h3>
