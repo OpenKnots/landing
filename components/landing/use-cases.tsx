@@ -20,7 +20,7 @@ const useCases = [
     description:
       "Deploy AI agents that handle customer inquiries with empathy and accuracy, while staying within defined response boundaries.",
     outcomes: [
-      "70% reduction in first-response time",
+      "Reduction in first-response time",
       "Consistent tone and brand voice",
       "Seamless human handoff when needed",
       "Complete conversation audit trails",
