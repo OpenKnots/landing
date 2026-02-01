@@ -48,22 +48,22 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
     >
       <div
         className={`
-          relative overflow-hidden rounded-2xl
+          relative overflow-hidden rounded-xl
           backdrop-blur-xl bg-white/5 dark:bg-white/5
           border border-white/10 dark:border-white/10
-          shadow-xl shadow-primary/5
+          shadow-md
           transition-all duration-500
           ${isOpen 
-            ? "bg-white/10 dark:bg-white/10 border-primary/30 shadow-primary/10" 
-            : "hover:bg-white/10 dark:hover:bg-white/10 hover:border-primary/20 hover:shadow-primary/10"
+            ? "bg-white/10 dark:bg-white/10 border-primary/30" 
+            : "hover:bg-white/10 dark:hover:bg-white/10 hover:border-primary/20"
           }
         `}
       >
         {/* Gradient overlay */}
         <div 
           className={`
-            absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5
-            transition-opacity duration-500
+            absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10
+            transition-opacity duration-300
             ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-50"}
           `}
         />
@@ -78,18 +78,18 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
           </span>
           <div 
             className={`
-              shrink-0 p-2 rounded-xl backdrop-blur-sm
+              shrink-0 p-2 rounded-xl backdrop-blur-md
               transition-all duration-300
               ${isOpen 
-                ? "bg-primary/20 text-primary/90 rotate-0" 
-                : "bg-white/10 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary/90"
+                ? "bg-secondary text-secondary-foreground/70 hover:bg-secondary hover:text-secondary-foreground rotate-0" 
+                : "bg-white/10 text-muted-foreground group-hover:bg-secondary group-hover:text-secondary-foreground/70 hover:bg-secondary hover:text-secondary-foreground/70"
               }
             `}
           >
             {isOpen ? (
-              <Minus className="h-4 w-4" />
+              <Minus className="size-4" />
             ) : (
-              <Plus className="h-4 w-4" />
+              <Plus className="size-4" />
             )}
           </div>
         </button>
@@ -131,7 +131,7 @@ export function FAQ() {
       <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +140,7 @@ export function FAQ() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
-            Frequently asked questions
+            Frequently Asked Questions
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
             Everything you need to know about getting started with OpenKnot AI.

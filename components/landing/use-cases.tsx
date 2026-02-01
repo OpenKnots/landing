@@ -110,7 +110,13 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
         shadow-xl shadow-black/5
         transition-all duration-500 cursor-pointer
         ${styles.hover}
-        ${useCase.size === "large" ? "md:col-span-2 md:row-span-2" : "md:col-span-1 md:row-span-1"}
+        ${
+          useCase.id === "support"
+            ? "md:col-span-2 md:row-span-3"
+            : useCase.size === "large"
+              ? "md:col-span-2 md:row-span-2"
+              : "md:col-span-1 md:row-span-1"
+        }
       `}
     >
       {/* Background gradient */}
