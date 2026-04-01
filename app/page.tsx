@@ -19,7 +19,6 @@ export default function HomePage() {
         <SocialProof />
         <ValueProps />
         <HowItWorks />
-        {/* <VSCodeExtensionCTA /> */}
         <OurProducts />
         <UseCases />
         <FAQ />

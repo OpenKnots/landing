@@ -35,7 +35,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border/50"
+          ? "bg-background/80 backdrop-blur-lg border-b border-border"
           : "bg-transparent"
       )}
     >
@@ -44,11 +44,11 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/openknot-logo.png"
+              src="/images/openknot-logo.png"
               alt="OpenKnot Logo"
-              width={36}
-              height={36}
-              className="rounded-lg"
+              width={32}
+              height={32}
+              className="rounded-md"
             />
             <span className="text-lg font-semibold tracking-tight">
               OpenKnot AI
@@ -61,7 +61,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
+                className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
               >
                 {link.label}
               </Link>
@@ -77,7 +77,7 @@ export function Navbar() {
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
-            <Button asChild className="bg-primary hover:bg-primary/90 text-white">
+            <Button asChild>
               <Link href="#get-started">Get Started</Link>
             </Button>
           </div>
@@ -109,13 +109,13 @@ export function Navbar() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="py-4 space-y-2 border-t border-border/50">
+              <div className="py-4 space-y-2 border-t border-border">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent/50"
+                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-muted"
                   >
                     {link.label}
                   </Link>
@@ -127,7 +127,7 @@ export function Navbar() {
                       GitHub
                     </Link>
                   </Button>
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white">
+                  <Button asChild className="w-full">
                     <Link href="#get-started">Get Started</Link>
                   </Button>
                 </div>

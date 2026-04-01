@@ -3,23 +3,24 @@
 import * as React from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { BookOpen, Github, Plug, Terminal } from "lucide-react"
+import { BookOpen, Github, Plug, Terminal, ArrowUpRight, MessageSquare, Code2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const products = [
   {
     id: "chat-with-files",
-    badge: "Chat with docs + repos",
+    badge: "AI-Powered",
+    badgeIcon: MessageSquare,
     title: "Chat-with-Files",
+    tagline: "Chat with any docs site or GitHub repo",
     description:
-      "Chat with any docs site or GitHub repo and get structured summaries with citations. Ideal for onboarding, audits, and quick answers from large codebases.",
+      "Get structured summaries with citations. Ideal for onboarding, audits, and quick answers from large codebases.",
     highlights: [
       {
         icon: BookOpen,
         title: "Docs-aware answers",
-        description: "Turn any docs URL into a searchable, summarized knowledge base.",
+        description: "Turn any docs URL into a searchable knowledge base.",
       },
       {
         icon: Github,
@@ -29,7 +30,7 @@ const products = [
       {
         icon: Terminal,
         title: "Fast exploration",
-        description: "Get the gist quickly with minimal setup and clear attribution.",
+        description: "Get the gist quickly with minimal setup.",
       },
     ],
     primaryCta: {
@@ -43,42 +44,117 @@ const products = [
   },
   {
     id: "openclaw-extension",
-    badge: "VS Code extension",
+    badge: "VS Code",
+    badgeIcon: Code2,
     title: "OpenClaw Extension",
+    tagline: "AI coding assistant for VS Code",
     description:
       "Install OpenClaw inside VS Code with guided setup, one-click connect, and auto-reconnect. Stay in your editor while OpenClaw keeps a ready terminal session.",
     highlights: [
       {
         icon: Plug,
         title: "Guided install",
-        description: "Set up OpenClaw in minutes with prompts and safe defaults.",
+        description: "Set up in minutes with prompts and safe defaults.",
       },
       {
         icon: Terminal,
         title: "One-click connect",
-        description: "Launch your configured OpenClaw command from a status shortcut.",
+        description: "Launch from a status shortcut.",
       },
       {
         icon: Github,
         title: "Open source",
-        description: "Browse the extension code and contribute improvements.",
+        description: "Browse and contribute improvements.",
       },
     ],
     primaryCta: {
-      label: "Install VS Code Extension",
+      label: "Install Extension",
       href: "https://github.com/OpenKnots/openclaw-extension",
     },
     secondaryCta: {
-      label: "View quick start",
+      label: "Quick start guide",
       href: "https://github.com/OpenKnots/openclaw-extension#quick-start-macos--windows",
     },
   },
 ]
 
+function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group relative"
+    >
+      <div className="relative h-full rounded-xl bg-card border border-border overflow-hidden hover:border-foreground/20 transition-all duration-500">
+        <div className="relative p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-10">
+          {/* Left content */}
+          <div className="flex flex-col">
+            {/* Badge */}
+            <div className="flex items-center gap-2 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-muted">
+                <product.badgeIcon className="h-3.5 w-3.5 text-foreground" />
+                <span className="text-xs font-medium text-foreground">{product.badge}</span>
+              </div>
+            </div>
+
+            {/* Title & tagline */}
+            <h3 className="text-2xl sm:text-3xl font-bold mb-2">{product.title}</h3>
+            <p className="text-lg text-muted-foreground font-medium mb-4">{product.tagline}</p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              {product.description}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+              <Button asChild size="lg">
+                <Link href={product.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {product.primaryCta.label}
+                  <ArrowUpRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <Link href={product.secondaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {product.secondaryCta.label}
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          {/* Right content - highlights */}
+          <div className="mt-8 lg:mt-0">
+            <div className="space-y-4">
+              {product.highlights.map((item) => (
+                <div 
+                  key={item.title} 
+                  className="flex gap-4 p-4 rounded-xl bg-muted/50 border border-border hover:border-foreground/10 transition-colors"
+                >
+                  <div className="shrink-0 p-3 rounded-lg bg-background border border-border">
+                    <item.icon className="h-5 w-5 text-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export function OurProducts() {
   return (
-    <section id="products" className="py-20 md:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="products" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/50 via-background to-muted/50" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,71 +162,35 @@ export function OurProducts() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
-            Explore{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              our products
-            </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+            Explore our products
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Tools that make OpenKnot faster to adopt, easier to explore, and ready
             for production use.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        {/* Products - stacked full-width cards */}
+        <div className="space-y-6">
           {products.map((product, index) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="h-full"
-            >
-              <Card className="h-full border-border/50 bg-card/70 backdrop-blur-sm">
-                <CardHeader className="space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 w-fit rounded-full border border-purple-500/30 bg-purple-500/10 text-sm text-purple-400">
-                    {product.badge}
-                  </div>
-                  <CardTitle className="text-2xl sm:text-3xl">{product.title}</CardTitle>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {product.description}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      asChild
-                      size="lg"
-                      className="bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
-                    >
-                      <Link href={product.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                        {product.primaryCta.label}
-                      </Link>
-                    </Button>
-                    <Button variant="outline" size="lg" asChild>
-                      <Link href={product.secondaryCta.href} target="_blank" rel="noopener noreferrer">
-                        {product.secondaryCta.label}
-                      </Link>
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-5">
-                  {product.highlights.map((item) => (
-                    <div key={item.title} className="flex gap-4">
-                      <div className="mt-1 flex size-10 aspect-square items-center justify-center rounded-xl bg-purple-500/10 border border-purple-500/20">
-                        <item.icon className="size-5 text-purple-500" />
-                      </div>
-                      <div>
-                        <h3 className="text-base font-semibold">{item.title}</h3>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </motion.div>
+            <ProductCard key={product.id} product={product} index={index} />
           ))}
         </div>
+
+        {/* Coming soon teaser */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-card border border-border text-muted-foreground">
+            <div className="h-2 w-2 rounded-full bg-foreground animate-pulse" />
+            <span className="text-sm font-medium">More products coming soon</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
