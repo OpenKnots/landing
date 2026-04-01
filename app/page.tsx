@@ -8,7 +8,7 @@ import { OurProducts } from "@/components/landing/our-products"
 import { UseCases } from "@/components/landing/use-cases"
 import { FAQ } from "@/components/landing/faq"
 import { FinalCTA } from "@/components/landing/final-cta"
-import { Footer } from "@/components/landing/footer"
+// import { Footer } from "@/components/landing/footer"
 
 export default function HomePage() {
   return (
@@ -24,7 +24,7 @@ export default function HomePage() {
         <FAQ />
         <FinalCTA />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
