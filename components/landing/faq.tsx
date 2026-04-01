@@ -26,6 +26,11 @@ const faqs = [
       "Yes. OpenKnot AI is designed to integrate seamlessly with your existing stack. We provide SDKs for Python and TypeScript, REST APIs, and pre-built connectors for popular services. Our tool binding system makes it easy to expose your internal APIs to agents in a controlled way.",
   },
   {
+    question: "What LLM providers are supported?",
+    answer:
+      "OpenKnot AI is model-agnostic and supports all major LLM providers including OpenAI, Anthropic, Google, and open-source models. You can switch providers without changing your agent logic, and even use different models for different specialists within the same workflow.",
+  },
+  {
     question: "What kind of support is available?",
     answer:
       "We offer multiple tiers of support. Our community Discord is active and helpful for general questions. Pro plans include priority support with guaranteed response times. Enterprise customers get dedicated support engineers and custom SLAs. We also provide comprehensive documentation and tutorials.",
@@ -47,49 +52,31 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
       className="group"
     >
       <div
-        className={`
-          relative overflow-hidden rounded-xl
-          backdrop-blur-xl bg-white/5 dark:bg-white/5
-          border border-white/10 dark:border-white/10
-          shadow-md
-          transition-all duration-500
-          ${isOpen 
-            ? "bg-white/10 dark:bg-white/10 border-primary/30" 
-            : "hover:bg-white/10 dark:hover:bg-white/10 hover:border-primary/20"
-          }
-        `}
+        className={`relative overflow-hidden rounded-2xl bg-card border transition-all duration-300 ${
+          isOpen 
+            ? "border-primary/30 shadow-lg shadow-primary/10" 
+            : "border-border/50 hover:border-primary/20"
+        }`}
       >
-        {/* Gradient overlay */}
-        <div 
-          className={`
-            absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10
-            transition-opacity duration-300
-            ${isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-50"}
-          `}
-        />
-
         {/* Question button */}
         <button
           onClick={onToggle}
-          className="relative w-full flex items-start justify-between gap-4 p-6 text-left"
+          className="w-full flex items-start justify-between gap-4 p-6 text-left"
         >
           <span className="text-base font-medium text-foreground pr-4">
             {faq.question}
           </span>
           <div 
-            className={`
-              shrink-0 p-2 rounded-xl backdrop-blur-md
-              transition-all duration-300
-              ${isOpen 
-                ? "bg-secondary text-secondary-foreground/70 hover:bg-secondary hover:text-secondary-foreground rotate-0" 
-                : "bg-white/10 text-muted-foreground group-hover:bg-secondary group-hover:text-secondary-foreground/70 hover:bg-secondary hover:text-secondary-foreground/70"
-              }
-            `}
+            className={`shrink-0 p-2 rounded-xl transition-all duration-300 ${
+              isOpen 
+                ? "bg-primary/20 text-primary rotate-0" 
+                : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+            }`}
           >
             {isOpen ? (
-              <Minus className="size-4" />
+              <Minus className="h-4 w-4" />
             ) : (
-              <Plus className="size-4" />
+              <Plus className="h-4 w-4" />
             )}
           </div>
         </button>
@@ -104,8 +91,8 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <div className="relative px-6 pb-6 pt-0">
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-4" />
+              <div className="px-6 pb-6 pt-0">
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-4" />
                 <p className="text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </p>
@@ -119,19 +106,16 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 }
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(null)
+  const [openIndex, setOpenIndex] = React.useState<number | null>(0)
 
   return (
-    <section id="faq" className="relative py-20 md:py-32 overflow-hidden">
-      {/* Glassmorphic background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-primary/5" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-      
-      {/* Floating orbs */}
+    <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-muted/30" />
       <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -139,14 +123,15 @@ export function FAQ() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
+          <p className="mt-6 text-lg text-muted-foreground text-pretty">
             Everything you need to know about getting started with OpenKnot AI.
           </p>
         </motion.div>
 
+        {/* FAQ items */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <FAQItem
@@ -158,6 +143,27 @@ export function FAQ() {
             />
           ))}
         </div>
+
+        {/* Still have questions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-12 text-center"
+        >
+          <p className="text-muted-foreground">
+            Still have questions?{" "}
+            <a 
+              href="https://github.com/openknots/discussions" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Join our community
+            </a>
+          </p>
+        </motion.div>
       </div>
     </section>
   )
