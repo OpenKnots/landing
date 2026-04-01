@@ -44,11 +44,11 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
             <Image
-              src="/openknot-logo.png"
+              src="/images/openknot-logo.png"
               alt="OpenKnot Logo"
-              width={36}
-              height={36}
-              className="rounded-lg"
+              width={32}
+              height={32}
+              className="rounded-md"
             />
             <span className="text-lg font-semibold tracking-tight">
               OpenKnot AI
