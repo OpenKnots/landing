@@ -41,7 +41,6 @@ const products = [
       label: "Try the demo",
       href: "https://chat-with-files-pi.vercel.app",
     },
-    featured: true,
   },
   {
     id: "openclaw-extension",
@@ -76,7 +75,6 @@ const products = [
       label: "Quick start guide",
       href: "https://github.com/OpenKnots/openclaw-extension#quick-start-macos--windows",
     },
-    featured: false,
   },
 ]
 
@@ -87,10 +85,10 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`group relative ${product.featured ? "lg:col-span-2" : ""}`}
+      className="group relative"
     >
       <div className="relative h-full rounded-xl bg-card border border-border overflow-hidden hover:border-foreground/20 transition-all duration-500">
-        <div className={`relative p-8 lg:p-10 ${product.featured ? "lg:grid lg:grid-cols-2 lg:gap-10" : ""}`}>
+        <div className="relative p-8 lg:p-10 lg:grid lg:grid-cols-2 lg:gap-10">
           {/* Left content */}
           <div className="flex flex-col">
             {/* Badge */}
@@ -125,7 +123,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           </div>
 
           {/* Right content - highlights */}
-          <div className={`${product.featured ? "mt-8 lg:mt-0" : "mt-8"}`}>
+          <div className="mt-8 lg:mt-0">
             <div className="space-y-4">
               {product.highlights.map((item) => (
                 <div 
@@ -173,8 +171,8 @@ export function OurProducts() {
           </p>
         </motion.div>
 
-        {/* Products grid */}
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        {/* Products - stacked full-width cards */}
+        <div className="space-y-6">
           {products.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
