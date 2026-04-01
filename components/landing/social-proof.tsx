@@ -46,9 +46,6 @@ const stats = [
 export function SocialProof() {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Trusted by section */}
         <motion.div
@@ -62,7 +59,7 @@ export function SocialProof() {
             Built for teams who need AI they can rely on
           </p>
 
-          {/* Audience chips - horizontal scroll on mobile */}
+          {/* Audience chips */}
           <div className="flex flex-wrap justify-center gap-3">
             {audiences.map((audience, index) => (
               <motion.div
@@ -72,7 +69,7 @@ export function SocialProof() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
               >
-                <div className="px-5 py-2.5 text-sm font-medium rounded-full bg-card border border-border/50 text-foreground/80 hover:border-primary/30 hover:text-foreground transition-all duration-300 cursor-default">
+                <div className="px-5 py-2.5 text-sm font-medium rounded-full bg-card border border-border text-foreground/80 hover:border-foreground/30 hover:text-foreground transition-all duration-300 cursor-default">
                   {audience}
                 </div>
               </motion.div>
@@ -91,7 +88,7 @@ export function SocialProof() {
           {stats.map((stat, index) => (
             <div key={index} className="text-center p-4">
               <div className="flex items-center justify-center gap-2 mb-1">
-                <stat.icon className="h-4 w-4 text-primary" />
+                <stat.icon className="h-4 w-4 text-foreground" />
                 <span className="text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</span>
               </div>
               <span className="text-xs sm:text-sm text-muted-foreground">{stat.label}</span>
@@ -110,14 +107,11 @@ export function SocialProof() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className="group relative"
             >
-              <div className="relative h-full p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden">
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+              <div className="relative h-full p-8 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all duration-500 overflow-hidden">
                 {/* Top section with icon and metric */}
                 <div className="relative flex items-start justify-between mb-6">
-                  <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                    <principle.icon className="h-7 w-7 text-primary" />
+                  <div className="p-4 rounded-xl bg-muted border border-border group-hover:bg-foreground/5 transition-all duration-300">
+                    <principle.icon className="h-7 w-7 text-foreground" />
                   </div>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-foreground">{principle.metric}</div>
@@ -132,9 +126,6 @@ export function SocialProof() {
                 <p className="relative text-muted-foreground leading-relaxed">
                   {principle.description}
                 </p>
-
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             </motion.div>
           ))}

@@ -113,17 +113,14 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
       transition={{ delay: index * 0.1, duration: 0.5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`group relative overflow-hidden rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 cursor-pointer ${sizeClasses[useCase.size]}`}
+      className={`group relative overflow-hidden rounded-xl bg-card border border-border hover:border-foreground/20 transition-all duration-500 cursor-pointer ${sizeClasses[useCase.size]}`}
     >
-      {/* Background gradient on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`} />
-
       {/* Content */}
       <div className={`relative flex flex-col h-full ${useCase.size === "featured" ? "p-8 lg:p-10" : useCase.size === "medium" ? "p-6 lg:p-8" : "p-5 lg:p-6"}`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
-          <div className={`p-3 rounded-2xl bg-primary/10 border border-primary/20 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 ${useCase.size === "small" ? "p-2.5" : ""}`}>
-            <useCase.icon className={`text-primary ${useCase.size === "small" ? "h-5 w-5" : "h-6 w-6"}`} />
+          <div className={`p-3 rounded-xl bg-muted border border-border group-hover:bg-foreground/5 transition-all duration-300 ${useCase.size === "small" ? "p-2.5" : ""}`}>
+            <useCase.icon className={`text-foreground ${useCase.size === "small" ? "h-5 w-5" : "h-6 w-6"}`} />
           </div>
           <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
             {useCase.label}
@@ -148,7 +145,7 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
               transition={{ delay: outcomeIndex * 0.05 }}
               className="flex items-center gap-2"
             >
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-primary/70 group-hover:text-primary transition-colors" />
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-foreground/50 group-hover:text-foreground transition-colors" />
               <span className="text-sm text-foreground/80">{outcome}</span>
             </motion.div>
           ))}
@@ -156,14 +153,11 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
 
         {/* Footer action */}
         <div className="mt-auto pt-4">
-          <div className="inline-flex items-center gap-2 text-sm font-medium text-primary/70 group-hover:text-primary transition-colors">
+          <div className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
             <span>Learn more</span>
             <ArrowRight className={`h-4 w-4 transition-transform duration-300 ${isHovered ? "translate-x-1" : ""}`} />
           </div>
         </div>
-
-        {/* Corner glow */}
-        <div className={`absolute -bottom-16 -right-16 w-32 h-32 rounded-full bg-primary/20 blur-3xl transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`} />
       </div>
     </motion.div>
   )
@@ -172,10 +166,6 @@ function BentoCard({ useCase, index }: { useCase: typeof useCases[0]; index: num
 export function UseCases() {
   return (
     <section id="use-cases" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

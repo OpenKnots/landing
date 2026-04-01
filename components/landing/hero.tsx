@@ -42,16 +42,12 @@ function TerminalPreview() {
       let remaining = line
       let tokenIndex = 0
 
-      // Keywords
       const keywords = ["from", "import", "def", "class", "return", "if", "else", "for", "in", "with", "as", "try", "except", "raise", "True", "False", "None"]
-      // Built-in functions
-      const builtins = ["print", "len", "str", "int", "float", "list", "dict", "tuple", "set"]
 
       while (remaining.length > 0) {
-        // Match comments
         if (remaining.startsWith("#")) {
           tokens.push(
-            <span key={`comment-${lineIndex}-${tokenIndex}`} className="text-muted-foreground/60 italic">
+            <span key={`comment-${lineIndex}-${tokenIndex}`} className="text-muted-foreground/50 italic">
               {remaining}
             </span>
           )
@@ -60,11 +56,10 @@ function TerminalPreview() {
           continue
         }
 
-        // Match strings (double and single quotes)
         const stringMatch = remaining.match(/^(["'])(.*?)\1/) || remaining.match(/^(["'])([^"']*)(["'])?/)
         if (stringMatch) {
           tokens.push(
-            <span key={`str-${lineIndex}-${tokenIndex}`} className="text-emerald-400">
+            <span key={`str-${lineIndex}-${tokenIndex}`} className="text-muted-foreground">
               {stringMatch[0]}
             </span>
           )
@@ -73,11 +68,10 @@ function TerminalPreview() {
           continue
         }
 
-        // Match brackets and special chars
         const bracketMatch = remaining.match(/^[\[\](){}=,.:]+/)
         if (bracketMatch) {
           tokens.push(
-            <span key={`bracket-${lineIndex}-${tokenIndex}`} className="text-foreground/60">
+            <span key={`bracket-${lineIndex}-${tokenIndex}`} className="text-foreground/40">
               {bracketMatch[0]}
             </span>
           )
@@ -86,20 +80,17 @@ function TerminalPreview() {
           continue
         }
 
-        // Match words
         const wordMatch = remaining.match(/^[a-zA-Z_][a-zA-Z0-9_]*/)
         if (wordMatch) {
           const word = wordMatch[0]
-          let className = "text-foreground/90"
+          let className = "text-foreground/80"
           
           if (keywords.includes(word)) {
-            className = "text-primary font-medium"
-          } else if (builtins.includes(word)) {
-            className = "text-amber-400"
+            className = "text-foreground font-medium"
           } else if (word === "Agent" || word === "Boundary" || word === "Tool") {
-            className = "text-cyan-400"
+            className = "text-foreground/90"
           } else if (word === "openknot") {
-            className = "text-primary"
+            className = "text-foreground"
           }
 
           tokens.push(
@@ -112,7 +103,6 @@ function TerminalPreview() {
           continue
         }
 
-        // Default: add character as-is
         tokens.push(remaining[0])
         remaining = remaining.slice(1)
       }
@@ -132,24 +122,21 @@ function TerminalPreview() {
       transition={{ delay: 0.3, duration: 0.6 }}
       className="relative group"
     >
-      {/* Glow effect */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-      
-      <div className="relative rounded-2xl bg-card/80 border border-border/50 backdrop-blur-xl overflow-hidden shadow-2xl">
+      <div className="relative rounded-xl bg-card border border-border overflow-hidden shadow-2xl">
         {/* Terminal header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 bg-muted/30">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
           <div className="flex items-center gap-3">
             <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-destructive/70" />
-              <div className="w-3 h-3 rounded-full bg-amber-500/70" />
-              <div className="w-3 h-3 rounded-full bg-emerald-500/70" />
+              <div className="w-3 h-3 rounded-full bg-foreground/20" />
+              <div className="w-3 h-3 rounded-full bg-foreground/20" />
+              <div className="w-3 h-3 rounded-full bg-foreground/20" />
             </div>
             <div className="flex gap-1">
               <button
                 onClick={() => setActiveTab("code")}
                 className={`px-3 py-1 text-xs rounded-md transition-colors ${
                   activeTab === "code"
-                    ? "bg-primary/20 text-primary"
+                    ? "bg-foreground/10 text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -160,7 +147,7 @@ function TerminalPreview() {
                 onClick={() => setActiveTab("output")}
                 className={`px-3 py-1 text-xs rounded-md transition-colors ${
                   activeTab === "output"
-                    ? "bg-primary/20 text-primary"
+                    ? "bg-foreground/10 text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -176,7 +163,7 @@ function TerminalPreview() {
             className="h-7 px-2 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-all"
           >
             {copied ? (
-              <Check className="h-3.5 w-3.5 text-emerald-400" />
+              <Check className="h-3.5 w-3.5" />
             ) : (
               <Copy className="h-3.5 w-3.5" />
             )}
@@ -192,22 +179,22 @@ function TerminalPreview() {
           ) : (
             <div className="text-sm font-mono space-y-2">
               <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="text-emerald-400">[ok]</span>
+                <span className="text-foreground">[ok]</span>
                 <span>Boundary validated</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="text-emerald-400">[ok]</span>
+                <span className="text-foreground">[ok]</span>
                 <span>Tools bound: search, summarize</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="text-emerald-400">[ok]</span>
+                <span className="text-foreground">[ok]</span>
                 <span>Memory initialized: conversation</span>
               </div>
-              <div className="flex items-center gap-2 text-primary">
-                <span className="text-cyan-400">[run]</span>
+              <div className="flex items-center gap-2 text-foreground">
+                <span>[run]</span>
                 <span>Processing: &quot;Analyze the quarterly report&quot;</span>
               </div>
-              <div className="mt-4 p-3 rounded-lg bg-primary/10 border border-primary/20">
+              <div className="mt-4 p-3 rounded-lg bg-muted border border-border">
                 <p className="text-foreground/90">
                   The Q4 report shows 23% revenue growth with strong performance in enterprise segment. 
                   Key highlights: reduced churn by 15%, expanded to 3 new markets.
@@ -227,13 +214,9 @@ function TerminalPreview() {
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
-      
-      {/* Grid pattern */}
+      {/* Subtle grid pattern */}
       <div 
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
                            linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
@@ -241,9 +224,8 @@ export function Hero() {
         }}
       />
 
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+      {/* Subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -259,28 +241,26 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-border bg-card"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
               </span>
-              <span className="text-sm font-medium text-primary">Now in Beta</span>
+              <span className="text-sm font-medium text-foreground">Now in Beta</span>
             </motion.div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-balance leading-[1.1]">
-              <span className="text-foreground">The platform to </span>
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-                build & ship
-              </span>
+              The platform to{" "}
+              <span className="text-foreground">build & ship</span>
               <br />
               <span className="text-foreground">AI agents</span>
             </h1>
 
-            {/* Subheadline */}
+            {/* Tagline */}
             <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 text-pretty leading-relaxed">
-              Composable, inspectable, and boundary-first. Build AI agents you can trust, debug, and deploy with confidence.
+              Build and Ship AI Primitives. Composable, inspectable, and boundary-first agents you can trust, debug, and deploy with confidence.
             </p>
 
             {/* CTAs */}
@@ -288,7 +268,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="h-12 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 text-base"
+                className="h-12 px-8 text-base"
               >
                 <Link href="#get-started">
                   Start Building
@@ -306,15 +286,15 @@ export function Hero() {
             {/* Trust indicators */}
             <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                <div className="h-1.5 w-1.5 rounded-full bg-foreground" />
                 <span>Open Source</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                <div className="h-1.5 w-1.5 rounded-full bg-foreground" />
                 <span>SOC 2 Ready</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                <div className="h-1.5 w-1.5 rounded-full bg-foreground" />
                 <span>Enterprise Grade</span>
               </div>
             </div>

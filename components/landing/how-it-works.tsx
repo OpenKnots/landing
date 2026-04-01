@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Shield, Link2, Users, Rocket, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-function InteractiveCodeBlock({ code, filename, language = "yaml" }: { code: string; filename: string; language?: string }) {
+function InteractiveCodeBlock({ code, filename }: { code: string; filename: string }) {
   const [copied, setCopied] = React.useState(false)
   const lines = code.split("\n")
 
@@ -16,50 +16,48 @@ function InteractiveCodeBlock({ code, filename, language = "yaml" }: { code: str
   }
 
   const highlightCode = (line: string) => {
-    if (language === "yaml") {
-      // Comments
-      if (line.trim().startsWith("#")) {
-        return <span className="text-muted-foreground/60 italic">{line}</span>
-      }
+    // Comments
+    if (line.trim().startsWith("#")) {
+      return <span className="text-muted-foreground/50 italic">{line}</span>
+    }
+    
+    // Key-value pairs
+    const keyMatch = line.match(/^(\s*)([a-zA-Z_-]+)(:)(.*)/)
+    if (keyMatch) {
+      const [, indent, key, colon, value] = keyMatch
+      const trimmedValue = value.trim()
       
-      // Key-value pairs
-      const keyMatch = line.match(/^(\s*)([a-zA-Z_-]+)(:)(.*)/)
-      if (keyMatch) {
-        const [, indent, key, colon, value] = keyMatch
-        const trimmedValue = value.trim()
-        
-        let valueElement: React.ReactNode = value
-        if (trimmedValue.startsWith('"') || trimmedValue.startsWith("'")) {
-          valueElement = <span className="text-emerald-400">{value}</span>
-        } else if (trimmedValue.startsWith("[")) {
-          valueElement = <span className="text-foreground/70">{value}</span>
-        } else {
-          valueElement = <span className="text-primary/80">{value}</span>
-        }
+      let valueElement: React.ReactNode = value
+      if (trimmedValue.startsWith('"') || trimmedValue.startsWith("'")) {
+        valueElement = <span className="text-foreground/70">{value}</span>
+      } else if (trimmedValue.startsWith("[")) {
+        valueElement = <span className="text-foreground/60">{value}</span>
+      } else {
+        valueElement = <span className="text-foreground/80">{value}</span>
+      }
 
+      return (
+        <>
+          {indent}
+          <span className="text-foreground">{key}</span>
+          <span className="text-foreground/40">{colon}</span>
+          {valueElement}
+        </>
+      )
+    }
+
+    // List items
+    if (line.trim().startsWith("-")) {
+      const match = line.match(/^(\s*)(-)(.*)/)
+      if (match) {
+        const [, indent, dash, rest] = match
         return (
           <>
             {indent}
-            <span className="text-cyan-400">{key}</span>
-            <span className="text-foreground/50">{colon}</span>
-            {valueElement}
+            <span className="text-foreground/50">{dash}</span>
+            <span className="text-foreground/80">{rest}</span>
           </>
         )
-      }
-
-      // List items
-      if (line.trim().startsWith("-")) {
-        const match = line.match(/^(\s*)(-)(.*)/)
-        if (match) {
-          const [, indent, dash, rest] = match
-          return (
-            <>
-              {indent}
-              <span className="text-primary/70">{dash}</span>
-              <span className="text-foreground/80">{rest}</span>
-            </>
-          )
-        }
       }
     }
     
@@ -67,14 +65,14 @@ function InteractiveCodeBlock({ code, filename, language = "yaml" }: { code: str
   }
 
   return (
-    <div className="relative group rounded-2xl bg-card border border-border/50 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
+    <div className="relative group rounded-xl bg-card border border-border overflow-hidden transition-all duration-300 hover:border-foreground/20">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 bg-muted/20">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-destructive/50 group-hover:bg-destructive/70 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-amber-500/50 group-hover:bg-amber-500/70 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500/70 transition-colors" />
+            <div className="w-3 h-3 rounded-full bg-foreground/20" />
+            <div className="w-3 h-3 rounded-full bg-foreground/20" />
+            <div className="w-3 h-3 rounded-full bg-foreground/20" />
           </div>
           <span className="text-xs text-muted-foreground font-mono">{filename}</span>
         </div>
@@ -85,7 +83,7 @@ function InteractiveCodeBlock({ code, filename, language = "yaml" }: { code: str
           className="h-7 px-2 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-all duration-200"
         >
           {copied ? (
-            <Check className="h-3.5 w-3.5 text-emerald-400" />
+            <Check className="h-3.5 w-3.5" />
           ) : (
             <Copy className="h-3.5 w-3.5" />
           )}
@@ -97,7 +95,7 @@ function InteractiveCodeBlock({ code, filename, language = "yaml" }: { code: str
         <pre className="text-sm font-mono leading-relaxed">
           <code>
             {lines.map((line, index) => (
-              <div key={index} className="hover:bg-primary/5 -mx-5 px-5 transition-colors">
+              <div key={index} className="hover:bg-foreground/5 -mx-5 px-5 transition-colors">
                 <span className="inline-block w-6 text-right mr-4 text-muted-foreground/40 select-none">
                   {index + 1}
                 </span>
@@ -209,9 +207,6 @@ rollback:
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -233,7 +228,7 @@ export function HowItWorks() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical timeline line - desktop only */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border" />
 
           <div className="space-y-16 lg:space-y-24">
             {steps.map((step, index) => (
@@ -253,13 +248,13 @@ export function HowItWorks() {
                     {/* Step number with timeline dot */}
                     <div className="flex items-center gap-4 mb-6">
                       {/* Timeline dot - desktop */}
-                      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background shadow-lg shadow-primary/30" />
+                      <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-foreground border-4 border-background" />
                       
-                      <span className="text-6xl font-bold text-primary/20 leading-none">
+                      <span className="text-6xl font-bold text-foreground/10 leading-none">
                         {step.step}
                       </span>
-                      <div className="p-3 rounded-xl bg-primary/10 border border-primary/20">
-                        <step.icon className="h-6 w-6 text-primary" />
+                      <div className="p-3 rounded-xl bg-muted border border-border">
+                        <step.icon className="h-6 w-6 text-foreground" />
                       </div>
                     </div>
 

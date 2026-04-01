@@ -52,10 +52,10 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
       className="group"
     >
       <div
-        className={`relative overflow-hidden rounded-2xl bg-card border transition-all duration-300 ${
+        className={`relative overflow-hidden rounded-xl bg-card border transition-all duration-300 ${
           isOpen 
-            ? "border-primary/30 shadow-lg shadow-primary/10" 
-            : "border-border/50 hover:border-primary/20"
+            ? "border-foreground/20" 
+            : "border-border hover:border-foreground/10"
         }`}
       >
         {/* Question button */}
@@ -67,10 +67,10 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
             {faq.question}
           </span>
           <div 
-            className={`shrink-0 p-2 rounded-xl transition-all duration-300 ${
+            className={`shrink-0 p-2 rounded-lg transition-all duration-300 ${
               isOpen 
-                ? "bg-primary/20 text-primary rotate-0" 
-                : "bg-muted text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+                ? "bg-foreground/10 text-foreground" 
+                : "bg-muted text-muted-foreground group-hover:bg-foreground/5 group-hover:text-foreground"
             }`}
           >
             {isOpen ? (
@@ -92,7 +92,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
               className="overflow-hidden"
             >
               <div className="px-6 pb-6 pt-0">
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-4" />
+                <div className="h-px w-full bg-border mb-4" />
                 <p className="text-muted-foreground leading-relaxed">
                   {faq.answer}
                 </p>
@@ -111,8 +111,7 @@ export function FAQ() {
   return (
     <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-muted/30" />
-      <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/50 via-background to-muted/50" />
 
       <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -158,7 +157,7 @@ export function FAQ() {
               href="https://github.com/openknots/discussions" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
+              className="text-foreground hover:underline font-medium"
             >
               Join our community
             </a>

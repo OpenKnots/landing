@@ -16,7 +16,6 @@ const features = [
   tools=[search, summarize]
 )`,
     highlights: ["Modular architecture", "Reusable components", "Clean abstractions"],
-    gradient: "from-primary/20 to-primary/5",
   },
   {
     icon: FileCheck,
@@ -28,7 +27,6 @@ const features = [
 # => 0 boundary violations
 # => Full replay available`,
     highlights: ["Full audit trails", "Policy enforcement", "Compliance ready"],
-    gradient: "from-emerald-500/20 to-emerald-500/5",
   },
   {
     icon: Activity,
@@ -39,7 +37,6 @@ const features = [
 # => DENIED: action not in allowlist
 # => Fallback: human_approval()`,
     highlights: ["Behavior guarantees", "Clear boundaries", "Real-time monitoring"],
-    gradient: "from-amber-500/20 to-amber-500/5",
   },
 ]
 
@@ -63,18 +60,17 @@ const additionalFeatures = [
 
 function CodeSnippet({ code }: { code: string }) {
   return (
-    <div className="mt-4 rounded-xl bg-background/80 border border-border/50 overflow-hidden">
+    <div className="mt-4 rounded-lg bg-muted border border-border overflow-hidden">
       <pre className="p-4 text-xs font-mono overflow-x-auto">
         <code className="text-muted-foreground">
           {code.split("\n").map((line, i) => {
-            // Simple syntax highlighting
             const highlighted = line
-              .replace(/(#.*)/g, '<span class="text-muted-foreground/60 italic">$1</span>')
-              .replace(/(".*?")/g, '<span class="text-emerald-400">$1</span>')
-              .replace(/(\b(?:agent|boundary|audit|compose)\b)/g, '<span class="text-primary">$1</span>')
-              .replace(/(=>)/g, '<span class="text-primary/70">$1</span>')
-              .replace(/(\d+)/g, '<span class="text-amber-400">$1</span>')
-              .replace(/(DENIED)/g, '<span class="text-destructive">$1</span>')
+              .replace(/(#.*)/g, '<span class="text-muted-foreground/50 italic">$1</span>')
+              .replace(/(".*?")/g, '<span class="text-foreground/70">$1</span>')
+              .replace(/(\b(?:agent|boundary|audit|compose)\b)/g, '<span class="text-foreground">$1</span>')
+              .replace(/(=>)/g, '<span class="text-foreground/50">$1</span>')
+              .replace(/(\d+)/g, '<span class="text-foreground/80">$1</span>')
+              .replace(/(DENIED)/g, '<span class="text-foreground font-medium">$1</span>')
             
             return (
               <span
@@ -94,8 +90,7 @@ export function ValueProps() {
   return (
     <section id="features" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-muted/30" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/50 via-background to-muted/50" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -107,10 +102,7 @@ export function ValueProps() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
-            Why teams choose{" "}
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              OpenKnot AI
-            </span>
+            Why teams choose OpenKnot AI
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
             Build AI systems that your team can understand, your stakeholders can trust, 
@@ -129,14 +121,11 @@ export function ValueProps() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               className="group"
             >
-              <div className="relative h-full p-8 rounded-3xl bg-card border border-border/50 hover:border-primary/30 transition-all duration-500 overflow-hidden">
-                {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
+              <div className="relative h-full p-8 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all duration-500 overflow-hidden">
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className="inline-flex p-4 rounded-2xl bg-primary/10 border border-primary/20 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                    <feature.icon className="h-7 w-7 text-primary" />
+                  <div className="inline-flex p-4 rounded-xl bg-muted border border-border group-hover:bg-foreground/5 transition-all duration-300">
+                    <feature.icon className="h-7 w-7 text-foreground" />
                   </div>
                 </div>
 
@@ -155,7 +144,7 @@ export function ValueProps() {
                 <ul className="relative mt-6 space-y-2">
                   {feature.highlights.map((highlight) => (
                     <li key={highlight} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                      <div className="h-1.5 w-1.5 rounded-full bg-foreground shrink-0" />
                       {highlight}
                     </li>
                   ))}
@@ -182,10 +171,10 @@ export function ValueProps() {
                 transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
                 className="group"
               >
-                <div className="h-full p-6 rounded-2xl bg-card/50 border border-border/30 hover:border-primary/20 hover:bg-card transition-all duration-300">
+                <div className="h-full p-6 rounded-xl bg-card/50 border border-border hover:border-foreground/20 hover:bg-card transition-all duration-300">
                   <div className="flex items-start gap-4">
-                    <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 shrink-0">
-                      <feature.icon className="h-5 w-5 text-primary" />
+                    <div className="p-2.5 rounded-lg bg-muted border border-border shrink-0">
+                      <feature.icon className="h-5 w-5 text-foreground" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">{feature.title}</h4>
